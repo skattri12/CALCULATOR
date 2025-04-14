@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = document.createElement('div')
+        document.body.append(a)
+        a.style.border = "2px solid red"
+        a.style.width = '350px'
+        a.style.height = '50px'
+        a.style.marginLeft = "530px"
+        a.style.fontSize = "x-large "
+        a.style.alignContent = "center"
+        a.style.textAlign = "center"
+        a.style.background = "lightGreen"
+        a.innerText = "CALCULATOR"
+        let b = document.createElement('div')
+        document.body.append(b)
+        b.style.border = "2px solid red"
+        b.style.width = '350px'
+        b.style.height = '480px'
+        b.style.marginLeft = "530px"
+        b.style.marginTop = "100px"
+        b.style.background = "yellow"
+        let c = document.createElement('div')
+        b.appendChild(c)
+        c.style.border = "2px solid red"
+        c.style.width = '350px'
+        c.style.height = '50px'
+        arr3 = ['1', '2', '3', '+']
+        for (let i = 0; i <= 3; i++) {
+            let d = document.createElement('button')
+            b.appendChild(d)
+            d.innerText = arr3[i]
+            d.style.border = "1px solid red"
+            d.style.width = "50px"
+            d.style.height = "50px"
+            d.style.margin = "18px"
+            d.style.borderRadius = "50%"
+            d.style.fontSize = 'large'
+            d.style.background = "yellow"
+        }
+        let arr1 = ['4', '5', '6', '-']
+        for (let i = 0; i <= 3; i++) {
+            let e = document.createElement('button')
+            b.appendChild(e)
+            e.innerText = arr1[i]
+            e.style.border = "1px solid red"
+            e.style.width = "50px"
+            e.style.height = "50px"
+            e.style.margin = "18px"
+            e.style.borderRadius = "50%"
+            e.style.fontSize = 'large'
+            e.style.background = "yellow"
+        }
+        let arr2 = ['7', '8', '9', 'x']
+        for (let i = 0; i <= 3; i++) {
+            let f = document.createElement('button')
+            b.appendChild(f)
+            f.innerText = arr2[i]
+            f.style.border = "1px solid red"
+            f.style.width = "50px"
+            f.style.height = "50px"
+            f.style.margin = "18px"
+            f.style.borderRadius = "50%"
+            f.style.fontSize = 'large'
+            f.style.background = "yellow"
+        }
+        let arr = ['.', '0', 'del', '/']
+        for (let i = 0; i <= 3; i++) {
+            let g = document.createElement('button')
+            b.appendChild(g)
+            g.innerText = arr[i]
+            g.style.border = "1px solid red"
+            g.style.width = "50px"
+            g.style.height = "50px"
+            g.style.margin = "18px"
+            g.style.borderRadius = "50%"
+            g.style.fontSize = 'large'
+            g.style.background = "yellow"
+        }
+        let h = document.createElement('button')
+        b.appendChild(h)
+        h.innerText = "="
+        h.style.border = "1px solid red"
+        h.style.width = "50px"
+        h.style.height = "50px"
+        h.style.margin = "18px"
+        h.style.marginLeft = "107px"
+        h.style.borderRadius = "50%"
+        h.style.fontSize = 'large'
+        h.style.background = "yellow"
+
+
+        let display = document.createElement('input');
+        display.style.width = "97.5%";
+        display.style.height = "88%";
+        display.style.margin = "10";
+        display.style.fontSize = "20px";
+        display.style.textAlign = "right";
+        display.readOnly = true;
+        c.appendChild(display);
+
+        let expression = "";
+
+        const buttons = document.querySelectorAll("button");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const value = btn.innerText;
+
+                if (value === "=") {
+                    try {
+                        let result = eval(expression.replace(/x/g, '*'));
+                        display.value = result;
+                        expression = result.toString();
+                    } catch (e) {
+                        display.value = "Error";
+                        expression = "";
+                    }
+                } else if (value === "del") {
+                    expression = expression.slice(0, -1);
+                    display.value = expression;
+                } else {
+                    expression += value;
+                    display.value = expression;
+                }
+            });
+        });
+
+    </script>
+    <style>
+        body {
+            background-color: rgb(4, 45, 92);
+        }
+    </style>
+</body>
+
+</html>
